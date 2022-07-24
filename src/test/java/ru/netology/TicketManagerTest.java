@@ -52,7 +52,7 @@ public class TicketManagerTest {
     @Test
     public void shouldSearchTicketFrom() {
 
-        Ticket[] expected = {ticket10, ticket6, ticket9};
+        Ticket[] expected = {ticket9, ticket10, ticket6};
         Ticket[] actual = manager.searchByFrom("SVX");
 
         Assertions.assertArrayEquals(expected, actual);
@@ -71,7 +71,7 @@ public class TicketManagerTest {
     @Test
     public void shouldSearchTicketTo() {
 
-        Ticket[] expected = {ticket5, ticket6};
+        Ticket[] expected = {ticket6, ticket5};
         Ticket[] actual = manager.searchByTo("MVQ");
 
         Assertions.assertArrayEquals(expected, actual);
