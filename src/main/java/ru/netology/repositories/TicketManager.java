@@ -1,6 +1,10 @@
 package ru.netology.repositories;
 
+import ru.netology.exceptions.TicketByTravelTimeComparator;
 import ru.netology.product.Ticket;
+
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class TicketManager {
 
@@ -23,7 +27,9 @@ public class TicketManager {
     }
 
     public Ticket[] searchByFrom(String text) {
+
         Ticket[] result = new Ticket[0];
+
         for (Ticket ticket : repository.getTickets()) {
             if (ticket.matchesFrom(ticket, text)) {
                 Ticket[] tmp = new Ticket[result.length + 1];
@@ -32,6 +38,9 @@ public class TicketManager {
                 result = tmp;
             }
         }
+        TicketByTravelTimeComparator travelTimeComparator = new TicketByTravelTimeComparator();
+        Arrays.sort(result, travelTimeComparator);
+
         return result;
     }
 
@@ -45,6 +54,9 @@ public class TicketManager {
                 result = tmp;
             }
         }
+        TicketByTravelTimeComparator travelTimeComparator = new TicketByTravelTimeComparator();
+        Arrays.sort(result, travelTimeComparator);
+
         return result;
     }
 }
