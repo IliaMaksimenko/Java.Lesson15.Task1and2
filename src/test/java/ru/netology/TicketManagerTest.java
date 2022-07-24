@@ -18,7 +18,7 @@ public class TicketManagerTest {
     Ticket ticket7 = new Ticket(9532, 1_500, "CFU", "IKT", 205);
     Ticket ticket8 = new Ticket(8246, 2_000, "KRO", "HER", 342);
     Ticket ticket9 = new Ticket(3745, 2_500, "SVX", "NER", 135);
-    Ticket ticket10 = new Ticket(4625, 1_650, "SVX", "NER", 165);
+    Ticket ticket10 = new Ticket(4625, 1_650, "SVX", "NER", 245);
 
     TicketManager manager = new TicketManager(new TicketRepository());
 
@@ -79,10 +79,10 @@ public class TicketManagerTest {
 
 
     @Test
-    public void shouldNoSearchTicketTo() {
+    public void shouldSearchTicketAndDoNotRearrange() {
 
-        Ticket[] expected = {};
-        Ticket[] actual = manager.searchByTo("DBB");
+        Ticket[] expected = {ticket3, ticket4};
+        Ticket[] actual = manager.searchByTo("GDX");
 
         Assertions.assertArrayEquals(expected, actual);
     }
