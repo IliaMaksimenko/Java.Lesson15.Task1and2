@@ -25,38 +25,33 @@ public class TicketManager {
         return repository.getTickets();
     }
 
-    public Ticket[] searchByFrom(String text) {
+    public Ticket[] findAll(String departureAirport, String airportArrival) {
 
-        Ticket[] result = new Ticket[0];
+        Ticket[] resultFrom = new Ticket[0];
 
         for (Ticket ticket : repository.getTickets()) {
-            if (ticket.matchesFrom(ticket, text)) {
-                Ticket[] tmp = new Ticket[result.length + 1];
-                System.arraycopy(result, 0, tmp, 0, result.length);
+            if (ticket.matchesFrom(ticket, departureAirport)) {
+                Ticket[] tmp = new Ticket[resultFrom.length + 1];
+                System.arraycopy(resultFrom, 0, tmp, 0, resultFrom.length);
                 tmp[tmp.length - 1] = ticket;
-                result = tmp;
+                resultFrom = tmp;
             }
-
         }
-        TicketByTravelTimeComparator travelTimeComparator = new TicketByTravelTimeComparator();
-        Arrays.sort(result, travelTimeComparator);
 
-        return result;
-    }
+        Ticket[] resultTo = new Ticket[0];
 
-    public Ticket[] searchByTo(String text) {
-        Ticket[] result = new Ticket[0];
-        for (Ticket ticket : repository.getTickets()) {
-            if (ticket.matchesTo(ticket, text)) {
-                Ticket[] tmp = new Ticket[result.length + 1];
-                System.arraycopy(result, 0, tmp, 0, result.length);
+        for (Ticket ticket : resultFrom) {
+            if (ticket.matchesTo(ticket, airportArrival)) {
+                Ticket[] tmp = new Ticket[resultTo.length + 1];
+                System.arraycopy(resultTo, 0, tmp, 0, resultTo.length);
                 tmp[tmp.length - 1] = ticket;
-                result = tmp;
+                resultTo = tmp;
             }
         }
         TicketByTravelTimeComparator travelTimeComparator = new TicketByTravelTimeComparator();
-        Arrays.sort(result, travelTimeComparator);
+        Arrays.sort(resultTo, travelTimeComparator);
 
-        return result;
+        return resultTo;
     }
+
 }
