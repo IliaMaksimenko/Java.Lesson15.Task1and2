@@ -4,7 +4,6 @@ import ru.netology.exceptions.TicketByTravelTimeComparator;
 import ru.netology.product.Ticket;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class TicketManager {
 
@@ -37,6 +36,7 @@ public class TicketManager {
                 tmp[tmp.length - 1] = ticket;
                 result = tmp;
             }
+
         }
         TicketByTravelTimeComparator travelTimeComparator = new TicketByTravelTimeComparator();
         Arrays.sort(result, travelTimeComparator);
